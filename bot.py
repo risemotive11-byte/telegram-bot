@@ -1,9 +1,9 @@
 import os
+TOKEN = os.getenv("BOT_TOKEN")
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputFile
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 
 # ================= CONFIG =================
-TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = 7572666431  # your Telegram user ID
 WALLET = "0xd9F1CE2e56D7f32EED384833C6537347574E1440"
 
@@ -113,7 +113,7 @@ async def handle_txid(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data["awaiting_txid"] = False
 
 # ================= MAIN =================
-app = ApplicationBuilder().token(BOT_TOKEN).build()
+app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(buy, pattern="buy"))
